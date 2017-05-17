@@ -1,0 +1,1 @@
+This is a Challenge that Dataiku sent me for the recruitment process. Read the ipython or the html to have more information. You can run the code by downloading the data that are avalaible in the introduction of the ipython.
