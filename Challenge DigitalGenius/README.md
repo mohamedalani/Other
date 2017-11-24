@@ -51,5 +51,4 @@ To run the scripts :
 
 * **Sample Call:**
 
-  ```http://127.0.0.1:5002/date_range/2000-01-01,2000-01-02
-  ```
+  `http://127.0.0.1:5002/date_range/2000-01-01,2000-01-02`
