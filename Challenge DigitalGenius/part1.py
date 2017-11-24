@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 if __name__ == '__main__':
-	print("extracting messages, please wait...")
+	print("extracting messages, it might take a few minutes, please wait...")
 	path = "../../data/"
 
 	df = pd.read_csv(path+"emails.csv")

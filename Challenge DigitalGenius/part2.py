@@ -10,6 +10,8 @@ import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 
+print()
+print("creating the Database, it might take some seconds...")
 #Path to where the csv is
 path = "../../data/"
 
@@ -90,11 +92,11 @@ api.add_resource(sender, '/sender/<sender_mail>') # Route_1
 api.add_resource(recipient, '/recipient/<recipient_mails>') # Route_2
 api.add_resource(date_range, '/date_range/<range_>') # Route_2
 
-
-
-if __name__ == '__main__':
-     app.run(port='5002')
+print()
 print("Example:")
 print("http://127.0.0.1:5002/sender/phillip.allen@enron.com")
 print("http://127.0.0.1:5002/recipient/tim.belden@enron.com,john.lavorato@enron.com")
 print("http://127.0.0.1:5002/date_range/2000-01-01,2000-01-02")
+
+if __name__ == '__main__':
+     app.run(port='5002')
