@@ -10,8 +10,10 @@ To run the scripts :
 * **URL**
 
   /sender/:sender_mail
+  
   /recipient/:recipient_mails
 
+  /date_range/:dates
 * **Method:**
 
   `GET`
@@ -21,6 +23,8 @@ To run the scripts :
    **Required:**
  
    `sender_mail=[string]`
+   `recipient_mails=[string,...,string]`
+   `dates=[date1,date2]`
 
 * **Data Params**
 

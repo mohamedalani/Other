@@ -11,7 +11,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 #Path to where the csv is
-path = "../../../data/enron-email-dataset/"
+path = "../../data/"
 
 #reading csv
 df = pd.read_csv(path+"emails_clean.csv")
