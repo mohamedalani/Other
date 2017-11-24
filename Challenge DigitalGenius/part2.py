@@ -36,8 +36,10 @@ class sender(Resource):
         
         conn = db_connect.connect() # connect to database
         query = conn.execute("select date, time, sender, receiver, subject, content from emails_clean where sender = '%s' " %sender_mail  ) # This line performs query and returns json result
-        result = {'mails found': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
-        return jsonify(result)
+        result = [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]
+        if len(result) == 0:
+            return({"error" : "No mails found"})
+        return jsonify({'mails found': result})
 
 #Filter by Recipient Addresses
 class recipient(Resource):
@@ -54,6 +56,9 @@ class recipient(Resource):
         for mail in mails:
             query = conn.execute("select date, time, sender, receiver, subject, content from emails_clean where receiver LIKE '%"+mail+"%'") # This line performs query and returns json result
             result[mail] = [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]
+        if all(v == [] for v in result.values()):
+            return({"error" : "No mails found"})
+			
         return jsonify({"mails found" : result})
 
 #Filter by date range
@@ -74,8 +79,11 @@ class date_range(Resource):
                 return("not a valid date interval, please enter a valid date interval : yyyy-mm-dd,yyyy-mm-dd")
         
         query = conn.execute("select date, time, sender, receiver, subject, content from emails_clean where date BETWEEN '"+dates[0]+"' and '"+dates[1]+"'") # This line performs query and returns json result
-        result  = {"mails found" : [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
-        return jsonify(result)
+		
+        result = [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]
+        if len(result) == 0:
+            return ({"error" : "No mails found"})
+        return jsonify({"mails found" : result})
 
 #Adding routes
 api.add_resource(sender, '/sender/<sender_mail>') # Route_1
@@ -86,3 +94,7 @@ api.add_resource(date_range, '/date_range/<range_>') # Route_2
 
 if __name__ == '__main__':
      app.run(port='5002')
+print("Example:")
+print("http://127.0.0.1:5002/sender/phillip.allen@enron.com")
+print("http://127.0.0.1:5002/recipient/tim.belden@enron.com,john.lavorato@enron.com")
+print("http://127.0.0.1:5002/date_range/2000-01-01,2000-01-02")

@@ -33,27 +33,23 @@ To run the scripts :
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12, name : "Michael Bloom" }`
+    **Content:** `{
+  "mails found": [
+    {
+      "content": " Hello, :) Best regards, Sally  ",
+      "date": "2000-01-01",
+      "receiver": "fernley.dyson@enron.com",
+      "sender": "sally.beck@enron.com",
+      "subject": ": Happy New Year - No Y2K Fear!",
+      "time": "14:36:00"
+    }]}`
  
 * **Error Response:**
-
   * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "User doesn't exist" }`
+    **Content:** `{ error : "No mails found" }`
 
-  OR
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "You are unauthorized to make this request." }`
 
 * **Sample Call:**
 
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
+  ```http://127.0.0.1:5002/date_range/2000-01-01,2000-01-02
   ```
